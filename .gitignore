@@ -1,0 +1,4 @@
+node_modules/
+coverage/
+dist/
+s3-mock-contents

@@ -1,0 +1,63 @@
+restore-yarn-cache: &restore-yarn-cache
+  restore_cache:
+    keys:
+      - yarn-{{ checksum "yarn.lock" }}
+      - yarn-
+
+npmrc: &npmrc
+  run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
+docker-node: &docker-node
+  docker:
+    - image: circleci/node:8.10.0
+
+version: 2
+jobs:
+  deploy:
+    <<: *docker-node
+    steps:
+      - checkout
+      - *restore-yarn-cache
+      - *npmrc
+      - run: yarn
+      - run: yarn build
+      - run: git config user.email "ovotech-ci@ovoenergy.com"
+      - run: git config user.name "Ovotech CI"
+      - run: yarn publish --new-version $CIRCLE_TAG
+  test:
+    <<: *docker-node
+    steps:
+      - checkout
+      - *restore-yarn-cache
+      - *npmrc
+      - run: yarn
+      - run: yarn build-es
+      - run: mkdir -p reports/junit
+      - run: yarn lint --format junit --out reports/junit/js-lint-results.xml
+      - run:
+          command: yarn start
+          background: true
+      - run: .circleci/wait-for-server.sh
+      - run:
+          command: yarn test --runInBand --ci --testResultsProcessor="jest-junit"
+          environment:
+            JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
+      - store_test_results:
+          path: reports/junit
+      - save_cache:
+          key: yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+  test:
+    jobs:
+      - test
