@@ -1,6 +1,7 @@
 # Apollo S3DataSource
 
 [![CircleCI](https://circleci.com/gh/ovotech/apollo-datasource-s3.svg?style=svg&circle-token=c64973d3fd46a2b132c93516f9f44df992380a3b)](https://circleci.com/gh/ovotech/apollo-datasource-s3)
+[![npm (scoped)](https://img.shields.io/npm/v/@ovotech/apollo-datasource-s3.svg)](https://www.npmjs.com/package/@ovotech/apollo-datasource-s3)
 
 S3DataSource is responsible for fetching data from a given S3 bucket using aws js API. Integrates with the cache and expires tags on S3.
 This useful if you want to read data from a private / restricted s3 bucket.
