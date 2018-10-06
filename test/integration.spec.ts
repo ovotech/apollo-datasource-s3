@@ -29,9 +29,18 @@ class TestS3DataSource extends S3DataSource {
   }
 }
 
-const s3 = new S3({ endpoint: `http://localhost:4568`, sslEnabled: false, s3ForcePathStyle: true });
+const s3 = new S3({
+  endpoint: `http://localhost:4568`,
+  sslEnabled: false,
+  s3ForcePathStyle: true,
+  secretAccessKey: '123',
+  accessKeyId: 'asd',
+});
+
 const config: DataSourceConfig<{}> = { cache: new InMemoryLRUCache(), context: {} };
+
 const dataSource = new TestS3DataSource(s3);
+
 dataSource.initialize(config);
 
 const deleteBucketContents = async (name: string) => {
