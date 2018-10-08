@@ -25,8 +25,8 @@ jobs:
     docker:
       - image: circleci/node:8.10.0
       - image: localstack/localstack
-    environment:
-      SERVICES: s3
+        environment:
+          SERVICES: s3
 
     steps:
       - checkout
