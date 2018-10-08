@@ -11,7 +11,6 @@
   "license": "Apache-2.0",
   "scripts": {
     "test": "jest",
-    "start": "mkdir -p s3-mock-contents && s3rver -d s3-mock-contents",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "build-cjs": "tsc --outDir dist/cjs/",
     "build-es": "tsc --outDir dist/es/ --module esnext --declaration --declarationDir dist/types/",
