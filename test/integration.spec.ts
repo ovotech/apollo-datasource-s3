@@ -30,7 +30,7 @@ class TestS3DataSource extends S3DataSource {
 }
 
 const s3 = new S3({
-  endpoint: `http://localhost:4568`,
+  endpoint: `http://localhost:4572`,
   sslEnabled: false,
   s3ForcePathStyle: true,
   secretAccessKey: '123',
@@ -66,7 +66,7 @@ describe('Integration test', () => {
 
   it('Should get and cache data', async () => {
     // Error on missing key
-    await expect(dataSource.get('test')).rejects.toEqual(new Error('The specified key does not exist'));
+    await expect(dataSource.get('test')).rejects.toEqual(new Error('The specified key does not exist.'));
 
     // Put empty key
     await expect(dataSource.put('test', undefined)).resolves.toEqual(undefined);
