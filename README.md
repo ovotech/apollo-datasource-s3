@@ -55,6 +55,14 @@ class MyS3DataSource extends S3DataSource {
 
 ## Running the tests
 
+You'll need to start the mock s3 server first:
+
+```bash
+yarn start
+```
+
+After which you can run all the tests:
+
 ```bash
 yarn test
 ```
@@ -75,7 +83,7 @@ To deploy a new version, push to master and then create a new release. CircleCI 
 
 Have a bug? File an issue with a simple example that reproduces this so we can take a look & confirm.
 
-Want to make a change? Submit a PR, explain why it's useful, and make sure you've updated the docs (this file) and the tests (see `test/index.spec.ts`). You can run the tests with `yarn test`.
+Want to make a change? Submit a PR, explain why it's useful, and make sure you've updated the docs (this file) and the tests (see `test/S3DataSource.spec.ts`). You can run the tests with `yarn start` and `yarn test`.
 
 ## Responsible Team
 
