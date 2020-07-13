@@ -48,5 +48,8 @@
     "apollo-server-caching": "^0.1.2",
     "apollo-server-errors": "^2.0.2",
     "aws-sdk": "^2.328.0"
+  },
+  "peerDependencies": {
+    "aws-sdk": "^2.328.0"
   }
 }
