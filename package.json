@@ -44,9 +44,9 @@
     "testURL": "http://localhost/"
   },
   "dependencies": {
-    "apollo-datasource": "^0.1.3",
-    "apollo-server-caching": "^0.1.2",
-    "apollo-server-errors": "^2.0.2",
+    "apollo-datasource": "^0.7.2",
+    "apollo-server-caching": "^0.5.2",
+    "apollo-server-errors": "^2.4.2",
     "aws-sdk": "^2.328.0"
   },
   "peerDependencies": {
